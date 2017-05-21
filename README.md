@@ -1,6 +1,8 @@
 Functional programming with TypeScript and Ramda
 ================================================
 
+[![Sponsored by Leonidas](https://img.shields.io/badge/sponsored%20by-leonidas-389fc1.svg)](https://leonidasoy.fi/opensource)
+
 Immutability
 ------------
 
