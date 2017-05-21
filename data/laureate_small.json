@@ -1,0 +1,156 @@
+{
+  "laureates": [
+    {
+      "born": "1845-03-27",
+      "bornCity": "Lennep (now Remscheid)",
+      "bornCountry": "Prussia (now Germany)",
+      "bornCountryCode": "DE",
+      "died": "1923-02-10",
+      "diedCity": "Munich",
+      "diedCountry": "Germany",
+      "diedCountryCode": "DE",
+      "firstname": "Wilhelm Conrad",
+      "gender": "male",
+      "id": "1",
+      "prizes": [
+        {
+          "affiliations": [
+            {
+              "city": "Munich",
+              "country": "Germany",
+              "name": "Munich University"
+            }
+          ],
+          "category": "physics",
+          "motivation": "\"in recognition of the extraordinary services he has rendered by the discovery of the remarkable rays subsequently named after him\"",
+          "share": "1",
+          "year": "1901"
+        }
+      ],
+      "surname": "R\u00f6ntgen"
+    },
+    {
+      "born": "1853-07-18",
+      "bornCity": "Arnhem",
+      "bornCountry": "the Netherlands",
+      "bornCountryCode": "NL",
+      "died": "1928-02-04",
+      "diedCountry": "the Netherlands",
+      "diedCountryCode": "NL",
+      "firstname": "Hendrik Antoon",
+      "gender": "male",
+      "id": "2",
+      "prizes": [
+        {
+          "affiliations": [
+            {
+              "city": "Leiden",
+              "country": "the Netherlands",
+              "name": "Leiden University"
+            }
+          ],
+          "category": "physics",
+          "motivation": "\"in recognition of the extraordinary service they rendered by their researches into the influence of magnetism upon radiation phenomena\"",
+          "share": "2",
+          "year": "1902"
+        }
+      ],
+      "surname": "Lorentz"
+    },
+    {
+      "born": "1865-05-25",
+      "bornCity": "Zonnemaire",
+      "bornCountry": "the Netherlands",
+      "bornCountryCode": "NL",
+      "died": "1943-10-09",
+      "diedCity": "Amsterdam",
+      "diedCountry": "the Netherlands",
+      "diedCountryCode": "NL",
+      "firstname": "Pieter",
+      "gender": "male",
+      "id": "3",
+      "prizes": [
+        {
+          "affiliations": [
+            {
+              "city": "Amsterdam",
+              "country": "the Netherlands",
+              "name": "Amsterdam University"
+            }
+          ],
+          "category": "physics",
+          "motivation": "\"in recognition of the extraordinary service they rendered by their researches into the influence of magnetism upon radiation phenomena\"",
+          "share": "2",
+          "year": "1902"
+        }
+      ],
+      "surname": "Zeeman"
+    },
+    {
+      "born": "1852-12-15",
+      "bornCity": "Paris",
+      "bornCountry": "France",
+      "bornCountryCode": "FR",
+      "died": "1908-08-25",
+      "diedCountry": "France",
+      "diedCountryCode": "FR",
+      "firstname": "Antoine Henri",
+      "gender": "male",
+      "id": "4",
+      "prizes": [
+        {
+          "affiliations": [
+            {
+              "city": "Paris",
+              "country": "France",
+              "name": "\u00c9cole Polytechnique"
+            }
+          ],
+          "category": "physics",
+          "motivation": "\"in recognition of the extraordinary services he has rendered by his discovery of spontaneous radioactivity\"",
+          "share": "2",
+          "year": "1903"
+        }
+      ],
+      "surname": "Becquerel"
+    },
+    {
+      "born": "1867-11-07",
+      "bornCity": "Warsaw",
+      "bornCountry": "Russian Empire (now Poland)",
+      "bornCountryCode": "PL",
+      "died": "1934-07-04",
+      "diedCity": "Sallanches",
+      "diedCountry": "France",
+      "diedCountryCode": "FR",
+      "firstname": "Marie",
+      "gender": "female",
+      "id": "6",
+      "prizes": [
+        {
+          "affiliations": [
+            []
+          ],
+          "category": "physics",
+          "motivation": "\"in recognition of the extraordinary services they have rendered by their joint researches on the radiation phenomena discovered by Professor Henri Becquerel\"",
+          "share": "4",
+          "year": "1903"
+        },
+        {
+          "affiliations": [
+            {
+              "city": "Paris",
+              "country": "France",
+              "name": "Sorbonne University"
+            }
+          ],
+          "category": "chemistry",
+          "motivation": "\"in recognition of her services to the advancement of chemistry by the discovery of the elements radium and polonium, by the isolation of radium and the study of the nature and compounds of this remarkable element\"",
+          "share": "1",
+          "year": "1911"
+        }
+      ],
+      "surname": "Curie, n\u00e9e Sklodowska"
+    }
+  ]
+}
