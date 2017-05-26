@@ -8,14 +8,14 @@ import { data, dataLarge, Laureate } from './base';
 const expect = chai.expect;
 
 interface Person {
-  firstname: string,
-  lastname: string
+  readonly firstname: string,
+  readonly lastname: string
 }
 
 type Year = number;
 
 interface PersonWithPrizes extends Person {
-  prizeYears: Year[]
+  readonly prizeYears: Year[]
 }
 
 describe('R.map', () => {
