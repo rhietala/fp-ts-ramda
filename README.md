@@ -15,8 +15,8 @@ First-class and higher-order functions
 > arguments or return them as results.
 > [[Wikipedia]](https://en.wikipedia.org/wiki/Functional_programming#First-class_and_higher-order_functions)
 
-Examples that TypeScipt (and JavaScript) has first-class functions (assigning a
-function to variable and passing it them as an argument to another function):
+Examples that JavaScript has first-class functions. First assigning a function to a
+variable:
 
 ```typescript
 const ascending = (a: number, b: number): number =>
@@ -27,6 +27,10 @@ const reverse = (a: number, b: number): number =>
   1;
 ```
 
+[Array.prototype.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort?v=example)
+takes a function as argument. It will sort the array according to the given sorting
+function (ie. passing function as an argument to another) .
+
 ```typescript
 > [5, 6, 2, 3, 9].sort(ascending);
 [ 2, 3, 5, 6, 9 ]
@@ -36,7 +40,6 @@ const reverse = (a: number, b: number): number =>
 [ 9, 3, 2, 6, 5 ]
 ```
 
-[Array.prototype.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort?v=example)
 The standard probably doesn't guarantee that the array is always traversed in the
 same direction, so reversing might not work with that function on all inputs and
 implementations.
@@ -57,8 +60,8 @@ Immutability
 >
 > [[Wikipedia]](https://en.wikipedia.org/wiki/Immutable_object)
 
-TypeScript (JavaScript) standard library doesn't emphasize immutability, but
-rather for example array methods mutate their input in-place, such as sort:
+JavaScript standard library doesn't emphasize immutability. On the contrary, for
+example array methods, such as `sort` mutate their input in-place:
 
 ```typescript
 > // Using ascending and reverse from previous examples
@@ -76,10 +79,39 @@ rather for example array methods mutate their input in-place, such as sort:
 [ 9, 6, 5, 3, 2 ]
 ```
 
-Note that the `const` keyword doesn't restrict mutating the array contents.
+If we'd want sorted, reversed and the original array in different variables,
+this is not the way to go.
 
-Ramda functions always return an altered copy of the input data and don't
-mutate the input:
+Note that even when the variable is `const`, mutating array contents is ok:
+
+> The const declaration creates a read-only reference to a value. It does not
+> mean the value it holds is immutable, just that the variable identifier cannot
+> be reassigned. For instance, in the case where the content is an object, this
+> means the object's contents (e.g. its parameters) can be altered.
+> [[MDN]](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
+
+[Array.prototype.slice()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice?v=example)
+can be used to copy an array, so adding that would work.
+[Copying array by value in JavaScript](https://stackoverflow.com/questions/7486085/copying-array-by-value-in-javascript)
+
+
+```typescript
+> // Using ascending and reverse from previous examples
+> const arr: number[] = [5, 6, 2, 3, 9];
+> const sorted: number[] = arr.slice().sort(ascending);
+> sorted
+[ 2, 3, 5, 6, 9 ]
+> const reversed: number[] = arr.slice().sort(reverse);
+> reversed
+[ 9, 3, 2, 6, 5 ]
+> arr
+[ 5, 6, 2, 3, 9 ]
+> sorted
+[ 2, 3, 5, 6, 9 ]
+```
+
+Ramda functions (such as [R.sort](http://ramdajs.com/docs/#sort)) always return
+an altered copy of the input data and don't mutate the input:
 
 
 ```typescript
@@ -119,7 +151,7 @@ Pure functions, side-effects
 >
 > [[Wikipedia]](https://en.wikipedia.org/wiki/Functional_programming#Pure_functions)
 
-Examples of a impure functions (first good, second bad):
+Examples of a impure functions:
 
 ```typescript
 const getTime = (): number =>
@@ -209,10 +241,8 @@ Luckily the user doesn't need values for any other inputs:
 Reading input and writing output are impure by nature. Pure functions should be
 written whenever possible.
 
-[Copying array by value in JavaScript](https://stackoverflow.com/questions/7486085/copying-array-by-value-in-javascript)
-
 Running the tests
------------------
+=================
 
 You can solve the exercises and execute
 
@@ -230,17 +260,191 @@ To run the exercises automatically whenever you save changes to a file, execute
     npm run test:watch
 
 
-types
-=====
+Types in TypeScript
+===================
 
-* basic types
-* type aliases
-* interfaces
-* optional types
-* union types
+Type annotations and compile-time type checking
+-----------------------------------------------
 
-https://www.typescriptlang.org/docs/handbook/basic-types.html
+
+
+
+Basic types
+-----------
+
+* Boolean: `boolean`
+* Number: `number`
+* String: `string`
+* Array: `[]` or `Array<type>` variable-length lists with elements of the same type
+* Tuple: `[type, type]` fixed-length lists with predefined types for each element
+* Enum: `enum type {a, b, c}` names for a set of numeric values
+* Any: `any` value can be anything
+* Void: `void` no type
+* Null: `null` null value
+* Undefined: `undefined` undefined value
+
+[TypeScript handbook: Basic types](https://www.typescriptlang.org/docs/handbook/basic-types.html)
+
+Simple basic types:
+
+```typescript
+const valid: boolean = true;
+const pi: number = 3.14159;
+const hello: string = 'Hello world!';
+const numbers: number[] = [5, 6, 2, 3, 9];
+const personRow: [string, string, number] = ['John', 'Doe', 1901];
+```
+
+> Enum is a way of giving more friendly names to sets of numeric values:
+
+```typescript
+> enum Color { Red, Green, Blue }
+> const red: Color = Color.Red;
+> const green: Color = Color.Green;
+> red
+0
+> green
+1
+```
+
+Any will let you type something that requires typing quickly and should maybe be used
+also on external inputs when you can't be sure that the input is what's specified.
+This way you'll have to do checks for the input to get it into correct format.
+
+```typescript
+const double: (input: any) => number | undefined =
+  (input) => {
+    if (typeof input !== 'number') {
+      return undefined;
+    }
+
+    return number * 2;
+  }
+```
+
+Void means that there is no type. This usually occurs in functions that don't return a
+value:
+
+```typescript
+const log: (input: string) => void =
+  (input) => {
+    console.log(input);
+    // no return here
+  }
+```
+
+Null and undefined are types for their respective JavaScript values `null` and `undefined`.
+
+Interfaces
+----------
+
+> In object-oriented programming, a protocol or interface is a common means for unrelated
+> objects to communicate with each other. These are definitions of methods and values which
+> the objects agree upon in order to co-operate.
+> [[Wikipedia]](https://en.wikipedia.org/wiki/Protocol_(object-oriented_programming))
+
+As most simple, an interface is type definition for an object where defined keys
+will have value of certain type:
+
+```typescript
+interface Person {
+  readonly firstName: string;
+  readonly middleName?: string;
+  readonly lastName: string;
+  readonly birthYear: number;
+}
+
+const john: Person = { firstName: 'John', middleName: 'Richard', lastName: 'Doe', birthYear: 1901 };
+const jane: Person = { firstName: 'Jane', lastName: 'Doe', birthYear: 1901 };
+```
+
+`?` in the interface property name will make it optional. That way the definition of `jane`
+doesn't have to include middleName:
+
+```typescript
+> john.middleName
+'Richard'
+> jane.middleName
+undefined
+```
+
+`readonly` attribute will prevent mutating the object property, and because mutation is bad,
+these should be used:
+
+```typescript
+> john.firstName = 'Jonathan';
+⨯ Unable to compile TypeScript
+[eval].ts (1,6): Cannot assign to 'firstName' because it is a constant or a read-only property. (2540)
+```
+
+`readonly` is not enough to prevent mutating arrays, but there is `ReadonlyArray`
+type for that. However, as all libraries use normal array types, using `ReadonlyArray`s will
+probably create more problems than solve.
+
+For typing objects that are used as associative arrays / maps / dictionaries (where keys
+are not known at compile-time), TypeScript has *indexable types*:
+
+```typescript
+interface PostalCodes {
+  readonly [index: string]: number[];
+}
+
+const codes: PostalCodes = {
+  'Tampere': [33100, 33200],
+  'Ivalo': [99800, 99801]
+};
+```
+
+[TypeScript handbook: Interfaces](https://www.typescriptlang.org/docs/handbook/interfaces.html)
+
+Optional and union types
+------------------------
+
+
+Generics and type casting
+-------------------------
+
 https://www.typescriptlang.org/docs/handbook/advanced-types.html
+
+Note about typing functions with arrow notation
+-----------------------------------------------
+
+There are two ways to write types that both have reasonable benefits over the other.
+
+Types on the "lambda function" (more about those later), after assignment:
+
+```typescript
+const sort = (arr: number[]): number[] =>
+  R.sort(ascending, arr);
+```
+
+And on the variable, before assignment (note that here the parameters and return value
+must be separated with `=>` and with `:` on previous notation!):
+
+```typescript
+const sort: (arr: number[]) => number[] =
+  (arr) =>
+    R.sort(ascending, arr);
+```
+
+First way would seem better as it doesn't require repeating the input parameters.
+However, it only makes sense when you have a lambda function for the assignment.
+This is not always the case, especially with Ramda, where all functions are curried
+(more about that later) to return a function if called with missing parameters.
+Then the latter typing scheme must be used, and in order to have the style coherent,
+it's better to use that also with lambda functions.
+
+So, because of currying, we can shorten the example to follow
+[point-free style](https://en.wikipedia.org/wiki/Tacit_programming):
+
+```typescript
+const sort: (arr: number[]) => number[] =
+  R.sort<number>(ascending);
+```
+
+Because `R.sort` returns a function here, TypeScript compiler doesn't understand that
+its input and output are number, so we'll have to define the generic type explicitly.
+This happens relatively often with Ramda functions, especially with function composition.
 
 lambda
 ======
