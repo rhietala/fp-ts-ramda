@@ -241,25 +241,6 @@ Luckily the user doesn't need values for any other inputs:
 Reading input and writing output are impure by nature. Pure functions should be
 written whenever possible.
 
-Running the tests
-=================
-
-You can solve the exercises and execute
-
-    npm run test
-
-to get results. It will stop on the first failing exercise. If you want to skip
-some exercises, you can add `.skip` to the test's `it`-call, for example:
-
-    it.skip('returns a list of surnames', () => {
-
-will let you continue with the next exercise.
-
-To run the exercises automatically whenever you save changes to a file, execute
-
-    npm run test:watch
-
-
 Types in TypeScript
 ===================
 
@@ -510,3 +491,23 @@ pointfree style
 
 http://randycoulman.com/blog/2016/05/24/thinking-in-ramda-getting-started/
 https://martinfowler.com/articles/collection-pipeline/
+
+
+Running the tests
+=================
+
+You can solve the exercises and execute
+
+    npm run test
+
+to get results. It will stop on the first failing exercise. If you want to skip
+some exercises, you can add `.skip` to the test's `it`-call, for example:
+
+    it.skip('returns a list of surnames', () => {
+
+will let you continue with the next exercise.
+
+To run the exercises automatically whenever you save changes to a file, execute
+
+    npm run test:watch
+
